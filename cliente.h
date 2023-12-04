@@ -27,7 +27,7 @@ class Produto
         }
 };
 
-class carrinho
+class Carrinho
 {
     private:
         vector <Produto> produtos;
@@ -58,7 +58,7 @@ class carrinho
                     return;
                 }
             }
-            
+
             cout << "Produto não encontrado no carrinho" << endl;
         }
 };

@@ -11,6 +11,39 @@ string Produto :: get_nomeproduto() const
     return nome_produto;
 }
 
+int Produto :: get_quantidade() const
+{
+    return quantidade;
+}
+
+void Carrinho :: adicionarProdutos( string nome, int quantidade )
+{
+    produtos.push_back(Produto( nome, quantidade ));
+}
+
+void Carrinho :: mostraCompras() const 
+{
+    for( const Produto& produto : produtos)
+    {
+        cout << "Produto " << produto.get_nomeproduto() << ", Quantidade " << produto.get_quantidade() << endl;
+    }
+}
+
+void Carrinho :: removerProduto( string nome ) 
+{
+    for(auto i = produtos.begin(); i != produtos.end(); ++i)
+    {
+        if(i -> get_nomeproduto() == nome)
+        {
+            produtos.erase(i);
+            cout << "Produto removido" << endl;
+
+            return;
+        }
+    }
+    cout << "Produto não encontrado no carrinho" << endl;
+}
+
 void Cliente :: set_nome( string nome)
 {
     this -> nome = nome;
