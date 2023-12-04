@@ -13,9 +13,6 @@ int main()
     cin >> quantidade_clientes;
 
     clientes = new Cliente[quantidade_clientes];
-
-    
-
     
     delete [] clientes;
     
