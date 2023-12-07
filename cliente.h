@@ -14,17 +14,9 @@ class Produto
         int quantidade;
     
     public:
-        Produto( string nome, int quantidade ) : nome_produto(nome), quantidade(quantidade) {}
-
-        string get_nomeproduto() const
-        {
-            return nome_produto;
-        }
-
-        int get_quantidade() const 
-        {
-            return quantidade;
-        }
+        Produto( string nome, int quantidade );
+        string get_nomeproduto() const;
+        int get_quantidade() const; 
 };
 
 class Carrinho
@@ -33,34 +25,9 @@ class Carrinho
         vector <Produto> produtos;
     
     public:
-        void adicionarProdutos( string nome, int quantidade )
-        {
-            produtos.push_back(Produto(nome, quantidade));
-        }
-    
-        void mostraCompras() const
-        {
-            for(const Produto& Produto : produtos)
-            {
-                cout << "Produto: " << Produto.get_nomeproduto() << ", Quantidade " << Produto.get_quantidade() << endl;  
-            }
-        }
-    
-        void removerProduto( string nome )
-        {
-            for(auto i = produtos.begin(); i != produtos.end(); ++i)
-            {
-                if(i -> get_nomeproduto() == nome)
-                {
-                    produtos.erase(i);
-                    cout << "Produto reovido: " << nome << endl;
-
-                    return;
-                }
-            }
-
-            cout << "Produto não encontrado no carrinho" << endl;
-        }
+        void adicionarProdutos( string nome, int quantidade );
+        void mostraCompras() const;
+        void removerProduto( string nome );
     
 };
 
@@ -73,7 +40,7 @@ class Cliente
         string email;
         string endereco;
         string data_nascimento;
-        int numero_de_clientes;
+
         Carrinho* carrinho;
 
     public:
