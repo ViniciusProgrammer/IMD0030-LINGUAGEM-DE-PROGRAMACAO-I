@@ -37,7 +37,7 @@ int main()
 
         cout << "Endereço: ";
         cin >> endereco;
-        clientes[i] -> set_email(email);
+        clientes[i] -> set_endereco(endereco);
 
         cout << "Data de Nascimento: ";
         cin >> data_nascimento;
@@ -50,7 +50,7 @@ int main()
         cout << "Informe o número de produtos para " << clientes[i] -> get_nome() << ": ";
         cin >> numero_produtos;
 
-        for( int j = 0; i < numero_produtos; ++j)
+        for( int j = 0; j < numero_produtos; ++j)
         {
             string nome_produto;
             int quantidade;
@@ -65,9 +65,25 @@ int main()
             carrinho -> adicionarProdutos(nome_produto, quantidade);
         }
 
-        
+        clientes[i] -> set_carrinho(carrinho);
 
     }
+
+    for( int i = 0; i < numClientes; ++i)
+    {
+        cout << "Detalhes do cliente " << i + 1 << ": " << endl;
+        clientes[i] -> imprime_dados();
+
+        cout << "Produtos no carrinho para " << clientes[i] -> get_nome() << ": " << endl;
+        clientes[i] -> get_carrinho() -> mostraCompras();
+    }
+
+    for( int i = 0; i < numClientes; ++i)
+    {
+        delete clientes[i];
+    }
+
+    delete [] clientes;
 
     return 0;
 }

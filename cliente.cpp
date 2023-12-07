@@ -74,6 +74,16 @@ void Cliente :: set_nascimento( string data_nascimento )
     this -> data_nascimento = data_nascimento;
 }
 
+void Cliente :: set_carrinho(Carrinho* novo_carrinho)
+{
+    if( carrinho != nullptr)
+    {
+        delete carrinho;
+    }
+
+    carrinho =novo_carrinho;
+}
+
 string Cliente :: get_nome()
 {
     return nome;
@@ -112,4 +122,9 @@ void Cliente :: imprime_dados()
     cout << "Email: " << email << endl;
     cout << "Endereço: " << endereco << endl;
     cout << "Data de Nascimento: " << data_nascimento << endl;
+}
+
+Carrinho* Cliente::get_carrinho() const 
+{
+    return carrinho;
 }

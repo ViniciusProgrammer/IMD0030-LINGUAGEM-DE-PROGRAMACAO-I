@@ -37,7 +37,7 @@ class Carrinho
         {
             produtos.push_back(Produto(nome, quantidade));
         }
-
+    
         void mostraCompras() const
         {
             for(const Produto& Produto : produtos)
@@ -45,7 +45,7 @@ class Carrinho
                 cout << "Produto: " << Produto.get_nomeproduto() << ", Quantidade " << Produto.get_quantidade() << endl;  
             }
         }
-
+    
         void removerProduto( string nome )
         {
             for(auto i = produtos.begin(); i != produtos.end(); ++i)
@@ -61,6 +61,7 @@ class Carrinho
 
             cout << "Produto não encontrado no carrinho" << endl;
         }
+    
 };
 
 class Cliente
@@ -73,6 +74,7 @@ class Cliente
         string endereco;
         string data_nascimento;
         int numero_de_clientes;
+        Carrinho* carrinho;
 
     public:
         void set_nome( string );
@@ -81,6 +83,7 @@ class Cliente
         void set_email( string );
         void set_endereco( string );
         void set_nascimento( string );
+        void set_carrinho(Carrinho* novo_carrinho);
 
         string get_nome();
         int get_idade();
@@ -88,6 +91,7 @@ class Cliente
         string get_email();
         string get_endereco();
         string get_nascimento();
+        Carrinho* get_carrinho() const;
 
         void imprime_dados();
 };
