@@ -25,9 +25,9 @@ class Carrinho
         vector <Produto> produtos;
     
     public:
-        void adicionarProdutos( string nome, int quantidade );
+        void adicionarProdutos( const string& nome, int quantidade );
         void mostraCompras() const;
-        void removerProduto( string nome );
+        void removerProduto( const string& nome );
     
 };
 
@@ -44,23 +44,26 @@ class Cliente
         Carrinho* carrinho;
 
     public:
-        void set_nome( string );
-        void set_idade( int );
-        void set_cpf( string );
-        void set_email( string );
-        void set_endereco( string );
-        void set_nascimento( string );
-        void set_carrinho(Carrinho* novo_carrinho);
+        Cliente();
+        ~Cliente();
 
-        string get_nome();
-        int get_idade();
-        string get_cpf();
-        string get_email();
-        string get_endereco();
-        string get_nascimento();
+        void set_nome( const string& nome );
+        void set_idade( int idade );
+        void set_cpf( const string& cpf );
+        void set_email( const string& email);
+        void set_endereco( const string& endereco );
+        void set_nascimento( const string& data_nascimento );
+        void set_carrinho( Carrinho* novo_carrinho );
+
+        string get_nome() const;
+        int get_idade() const;
+        string get_cpf() const;
+        string get_email() const;
+        string get_endereco() const;
+        string get_nascimento() const;
         Carrinho* get_carrinho() const;
 
-        void imprime_dados();
+        void imprime_dados() const;
 };
 
 #endif

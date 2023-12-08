@@ -1,6 +1,7 @@
 #include "cliente.h"
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int Produto :: get_quantidade() const
     return quantidade;
 }
 
-void Carrinho :: adicionarProdutos( string nome, int quantidade )
+void Carrinho :: adicionarProdutos( const string& nome, int quantidade )
 {
     produtos.push_back(Produto( nome, quantidade ));
 }
@@ -29,22 +30,30 @@ void Carrinho :: mostraCompras() const
     }
 }
 
-void Carrinho :: removerProduto( string nome ) 
+void Carrinho :: removerProduto( const string& nome ) 
 {
-    for(auto i = produtos.begin(); i != produtos.end(); ++i)
-    {
-        if(i -> get_nomeproduto() == nome)
-        {
-            produtos.erase(i);
-            cout << "Produto removido" << endl;
+    auto i = remove_if(produtos.begin(), produtos.end(),
+        [&nome](const Produto& produto) { return produto.get_nomeproduto() == nome; });
 
-            return;
-        }
+    if (i != produtos.end())
+    {
+        produtos.erase(i, produtos.end());
+        cout << "Produto removido" << endl;
+    } 
+    else 
+    {
+        cout << "Produto não encontrado no carrinho" << endl;
     }
-    cout << "Produto não encontrado no carrinho" << endl;
 }
 
-void Cliente :: set_nome( string nome)
+Cliente :: Cliente() : carrinho( nullptr ) {}
+
+Cliente :: ~Cliente()
+{
+    delete carrinho;
+}
+
+void Cliente :: set_nome( const string& nome)
 {
     this -> nome = nome;
 }
@@ -54,22 +63,22 @@ void Cliente :: set_idade( int idade )
     this -> idade = idade;
 }
 
-void Cliente :: set_cpf( string cpf )
+void Cliente :: set_cpf( const string& cpf )
 {
     this -> cpf = cpf;
 }
 
-void Cliente :: set_email( string email )
+void Cliente :: set_email( const string& email )
 {
     this -> email = email;
 }
         
-void Cliente :: set_endereco( string endereco )
+void Cliente :: set_endereco( const string& endereco )
 {
     this -> endereco = endereco;
 }
 
-void Cliente :: set_nascimento( string data_nascimento )
+void Cliente :: set_nascimento( const string& data_nascimento )
 {
     this -> data_nascimento = data_nascimento;
 }
@@ -84,37 +93,37 @@ void Cliente :: set_carrinho(Carrinho* novo_carrinho)
     carrinho =novo_carrinho;
 }
 
-string Cliente :: get_nome()
+string Cliente :: get_nome() const
 {
     return nome;
 }
 
-int Cliente :: get_idade()
+int Cliente :: get_idade() const
 {
     return idade;
 }
 
-string Cliente :: get_cpf()
+string Cliente :: get_cpf() const
 {
     return cpf;
 }
 
-string  Cliente :: get_email()
+string  Cliente :: get_email() const
 {
     return email;
 }
 
-string Cliente :: get_endereco()
+string Cliente :: get_endereco() const
 {
     return endereco;
 }
 
-string Cliente :: get_nascimento()
+string Cliente :: get_nascimento() const
 {
     return data_nascimento;
 }
 
-void Cliente :: imprime_dados()
+void Cliente :: imprime_dados() const
 {
     cout << "Nome: " << nome << endl;
     cout << "Idade: " << idade << endl;
