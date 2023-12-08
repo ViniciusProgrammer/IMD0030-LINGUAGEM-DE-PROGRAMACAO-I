@@ -20,7 +20,9 @@ int main()
 
         cout << "Cliente " << i + 1 << ": " <<  endl;
         cout << "Nome: ";
-        cin >> nome;
+        cin.ignore();
+        getline(cin, nome);
+        clientes[i] = new Cliente();
         clientes[i] -> set_nome(nome);
 
         cout << "Idade: ";
@@ -32,11 +34,13 @@ int main()
         clientes[i] -> set_cpf(cpf);
 
         cout << "Email: ";
-        cin >> email;
+        cin.ignore();
+        getline(cin, email);
         clientes[i] -> set_email(email);
 
         cout << "Endereço: ";
-        cin >> endereco;
+        cin.ignore();
+        getline(cin, endereco);
         clientes[i] -> set_endereco(endereco);
 
         cout << "Data de Nascimento: ";
@@ -57,7 +61,7 @@ int main()
 
             cout << "Produto " << j + 1 << " para " << clientes[i] -> get_nome() << ": " << endl;
             cout << "Nome do Produto: ";
-            cin >> nome_produto;
+            getline(cin, nome_produto);
 
             cout << "Quantidade: ";
             cin >> quantidade;
@@ -76,6 +80,8 @@ int main()
 
         cout << "Produtos no carrinho para " << clientes[i] -> get_nome() << ": " << endl;
         clientes[i] -> get_carrinho() -> mostraCompras();
+
+        delete clientes[i] -> get_carrinho();
     }
 
     for( int i = 0; i < numClientes; ++i)
