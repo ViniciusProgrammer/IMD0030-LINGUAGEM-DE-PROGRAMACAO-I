@@ -14,7 +14,8 @@ class Produto
         int quantidade;
     
     public:
-        Produto( string nome, int quantidade );
+        Produto( string nome = "", int quantidade = 0 );
+
         string get_nomeproduto() const;
         int get_quantidade() const; 
 };
@@ -46,6 +47,9 @@ class Cliente
     public:
         Cliente();
         ~Cliente();
+
+        Cliente ( const Cliente& outros);
+        Cliente& operator = ( const Cliente& outros);
 
         void set_nome( const string& nome );
         void set_idade( int idade );
