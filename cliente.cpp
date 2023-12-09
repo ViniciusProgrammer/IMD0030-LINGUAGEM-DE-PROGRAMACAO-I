@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Produto :: Produto( string nome, int quantidade ) : nome_produto( nome ), quantidade( quantidade ) {}
+//Produto :: Produto( string nome, int quantidade ) : nome_produto( nome ), quantidade( quantidade ) {}
 
-//Produto :: Produto(string nome = "", int quantidade = 0);
+Produto :: Produto(string nome, int quantidade) : nome_produto( nome ), quantidade( quantidade ) {};
 
 string Produto :: get_nomeproduto() const 
 {
@@ -47,6 +47,16 @@ void Carrinho :: removerProduto( const string& nome )
     {
         cout << "Produto não encontrado no carrinho" << endl;
     }
+}
+
+void Carrinho :: set_quantidade( int qtd )
+{
+    quantidade_produtos = qtd;
+}
+
+int Carrinho :: get_quantidade()
+{
+    return quantidade_produtos;
 }
 
 Cliente :: Cliente() : carrinho( nullptr ) {}

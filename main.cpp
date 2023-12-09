@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "cliente.h"
+#include <limits>
 
 using namespace std;
 
@@ -10,6 +11,8 @@ int main()
 
     cout << "Informe a quantidade de clientes: ";
     cin >> numClientes;
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     Cliente** clientes = new Cliente* [numClientes];
     
@@ -29,10 +32,9 @@ int main()
         cout << "Idade: ";
         cin >> idade;
 
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         cout << "CPF: ";
-        cin.ignore();
         getline(cin, cpf);
 
         clientes[i] -> set_idade(idade);
@@ -57,6 +59,12 @@ int main()
 
         cout << "Informe o número de produtos para " << clientes[i] -> get_nome() << ": ";
         cin >> numero_produtos;
+        
+        cout << clientes[i]->get_nome() << endl;
+
+        // roda aí
+        
+        cin.ignore();
 
         for( int j = 0; j < numero_produtos; ++j)
         {
