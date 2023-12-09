@@ -2,10 +2,13 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <limits>
 
 using namespace std;
 
 Produto :: Produto( string nome, int quantidade ) : nome_produto( nome ), quantidade( quantidade ) {}
+
+//Produto :: Produto(string nome = "", int quantidade = 0);
 
 string Produto :: get_nomeproduto() const 
 {
@@ -50,7 +53,45 @@ Cliente :: Cliente() : carrinho( nullptr ) {}
 
 Cliente :: ~Cliente()
 {
-    delete carrinho;
+    if( carrinho != nullptr)
+    {
+        delete carrinho;
+    }
+}
+
+Cliente::Cliente(const Cliente& other)
+    : nome(other.nome), idade(other.idade), cpf(other.cpf), email(other.email),
+      endereco(other.endereco), data_nascimento(other.data_nascimento), carrinho(nullptr)
+{
+    if (other.carrinho != nullptr)
+    {
+        carrinho = new Carrinho(*other.carrinho);
+    }
+}
+
+// Encontrei essa forma para garantir que um carrinho não seja adicionado no outro para não duplicar a compra feita por outro cliente
+
+Cliente& Cliente::operator = (const Cliente& outros)
+{
+    if (this != &outros)
+    {
+        nome = outros.nome;
+        idade = outros.idade;
+        cpf = outros.cpf;
+        email = outros.email;
+        endereco = outros.endereco;
+        data_nascimento = outros.data_nascimento;
+
+        delete carrinho; // Libera o carrinho atual
+        carrinho = nullptr;
+
+        if (outros.carrinho != nullptr)
+        {
+            carrinho = new Carrinho(*outros.carrinho);
+        }
+    }
+
+    return *this;
 }
 
 void Cliente :: set_nome( const string& nome)
