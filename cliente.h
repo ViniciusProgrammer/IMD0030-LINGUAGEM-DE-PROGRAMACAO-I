@@ -4,39 +4,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "carrinho.h"
+#include "produto.h"
 
 using namespace std;
-
-class Produto
-{
-    private:
-        string nome_produto;
-        int quantidade;
-    
-    public:
-        Produto( string nome = "", int quantidade = 0 );
-
-        string get_nomeproduto() const;
-        int get_quantidade() const; 
-};
-
-class Carrinho
-{
-    private:
-        vector <Produto> produtos;
-        int quantidade_produtos;
-    
-    public:
-
-        void set_quantidade( int );
-
-        void adicionarProdutos( const string& nome, int quantidade );
-        void mostraCompras() const;
-        void removerProduto( const string& nome );
-    
-        int get_quantidade();
-};
-
 class Cliente
 {
     private:
