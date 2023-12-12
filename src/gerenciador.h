@@ -1,7 +1,9 @@
-#ifndef GERENCIADOR.HPP
-#define GERENCIADOR.HPP
+#ifndef GERENCIADOR_HPP
+#define GERENCIADOR_HPP
 
 #include <iostream>
+
+using namespace std;
 
 #include "produto.h"
 #include "cliente.h"
