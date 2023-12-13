@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "cliente.h"
+#include "header/cliente.h"
 
 using namespace std;
 
@@ -8,12 +8,12 @@ Cliente::Cliente(){}
 
 Cliente::Cliente(string nome, string cpf, string dataNascimento,
             string genero, string rua, int numero, string bairro,
-            string cidade, string cep){
+            string cidade, string cep, string estado){
     this->nome = nome;
     this->cpf  = cpf;
     this->dataNascimento = dataNascimento;
     this->genero = genero;
-    this->endereco = new Endereco(rua, numero, bairro, cidade, cep);
+    this->endereco = new Endereco(rua, numero, bairro, cidade, cep, estado);
 }
 
 string Cliente::getNome(){
@@ -52,11 +52,12 @@ void Cliente::setGenero(string genero){
     this->genero = genero;
 }
 
-void Cliente::setEndereco(string rua, int numero, string bairro, string cidade, string cep){
+void Cliente::setEndereco(string rua, int numero, string bairro, string cidade, string cep, string estado){
     this->endereco->setRua(rua);
     this->endereco->setNumero(numero);
     this->endereco->setBairro(bairro);
     this->endereco->setCidade(cidade);
     this->endereco->setCep(cep);
     this->endereco->setCep(cep);
+    this->endereco->setEstado(estado);
 }
