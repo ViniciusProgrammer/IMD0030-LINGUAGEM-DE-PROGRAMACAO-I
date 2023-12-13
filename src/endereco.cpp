@@ -1,18 +1,19 @@
 #include <iostream>
 
-#include "endereco.h"
+#include "header/endereco.h"
 
 using namespace std;
 
 Endereco::Endereco(){}
 
 Endereco::Endereco(std::string rua, int numero, std::string bairro,
-                std::string cidade, std::string cep){
+                std::string cidade, std::string cep, std:: string estado){
     this->rua = rua;
     this->numero = numero;
     this->bairro = bairro;
     this->cidade = cidade;
     this->cep = cep;
+    this->estado = estado;
 }
 
 string Endereco::getRua(){
@@ -35,6 +36,10 @@ string Endereco::getCep(){
     return cep;
 }
 
+string Endereco::getEstado(){
+    return estado;
+}
+
 void Endereco::setRua(string rua){
     this->rua = rua;
 }
@@ -53,4 +58,9 @@ void Endereco::setCidade(string cidade){
 
 void Endereco::setCep(string cep){
     this->cep = cep;
+}
+
+void Endereco::setEstado(string estado)
+{
+    this->estado = estado;
 }
