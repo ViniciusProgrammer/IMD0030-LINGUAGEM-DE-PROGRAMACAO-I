@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "produto.h"
+#include "header/produto.h"
 
 using namespace std;
 
@@ -13,13 +13,13 @@ Produto::Produto()
     this -> valor_total = 0.00; 
 }
 
-Produto::Produto(string nome_produto, string id_produto, float preco, int quantidade, float valor_total)
+Produto::Produto(string nome_produto, string id_produto, float preco, int quantidade)
 {
     this -> nome_produto = nome_produto;
     this -> id_produto = id_produto;
     this -> preco = preco;
     this -> quantidade = quantidade;
-    this -> valor_total = valor_total;
+    this -> valor_total = quantidade * preco;
 }
 
 string Produto::get_nomeproduto() 
@@ -65,9 +65,4 @@ void Produto::set_preco(float preco)
 void Produto::set_quantidade(int quantidade)
 {
     this -> quantidade = quantidade;
-}
-
-void Produto::set_valortotal(float valor_total)
-{
-    this -> valor_total = valor_total;
 }
