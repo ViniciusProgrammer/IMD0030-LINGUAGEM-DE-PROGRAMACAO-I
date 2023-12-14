@@ -12,6 +12,7 @@ class Caixa : public Carrinho{
         void menuCaixa();
         void registrarCompra();
         void listarCompras();
+        void buscarCompras();
 };
 
 #endif
