@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "/home/davi/Documentos/workspace/lp1/meuprojeto/header/caixaSupermercado.h"
+#include "caixaSupermercado.h"
 
 using namespace std;
 
@@ -106,3 +106,30 @@ void Caixa::listarCompras(){
         }
     }
 }
+
+void Caixa :: buscarCompras() {
+    bool encontrado = false;
+    
+    string produtoProcurado;
+    cin.ignore();
+
+    getline(cin, produtoProcurado);
+
+    for(int i = 0; i < carrinhos.size(); i++){
+        if(carrinhos[i].get_nomeproduto() == produtoProcurado){
+
+            cout << "---Dados do Produto---" << endl;
+            cout << "Nome do item: " << carrinhos[i].get_nomeproduto() << endl;
+            cout << "ID do item: " << carrinhos[i].get_idproduto() << endl;
+            cout << "Preço: " << carrinhos[i].get_preco() << endl;
+            cout << "Quantidade: " << carrinhos[i].get_quantidade() << endl;
+            cout << "Valor total: " << carrinhos[i].get_valortotal() << endl;
+            cout << endl;
+            encontrado = true;
+        }
+    }
+    if(!encontrado){
+        cout << "Produto não encontrado." << endl;
+    }
+}
+
