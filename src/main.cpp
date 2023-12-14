@@ -27,7 +27,7 @@ int main()
                 //caixa.excluirCompra();
                 break;
             case 4:
-                //caixa.buscarCompra();
+                caixa.buscarCompras();
                 break;
             case 5:
                 cout << "Encerrando Sistema..." << endl;
