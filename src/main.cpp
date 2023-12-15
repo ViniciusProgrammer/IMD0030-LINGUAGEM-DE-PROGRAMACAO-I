@@ -3,7 +3,7 @@
 #include <limits>
 #include <vector>
 
-#include "caixaSupermercado.h"
+#include "caixaSupermercado.hpp"
 
 using namespace std;
 
@@ -11,6 +11,8 @@ int main()
 {
     Caixa caixa;
     int opcao;
+
+    caixa.inicializarArquivo();
 
     do{
         caixa.menuCaixa();
@@ -24,12 +26,13 @@ int main()
                 caixa.listarCompras();
                 break;
             case 3:
-                //caixa.excluirCompra();
+                caixa.excluirCompra();
                 break;
             case 4:
                 caixa.buscarCompras();
                 break;
             case 5:
+                caixa.atualizarArquivo();
                 cout << "Encerrando Sistema..." << endl;
                 break;
             default:
@@ -37,6 +40,6 @@ int main()
                 break;
         }
     } while(opcao != 5);
-    
+
     return 0;
 }

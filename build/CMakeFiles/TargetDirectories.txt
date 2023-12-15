@@ -1,0 +1,3 @@
+/home/leandro-felix/Documentos/github/projeto-LP1-IMD/build/CMakeFiles/MeuProjeto.dir
+/home/leandro-felix/Documentos/github/projeto-LP1-IMD/build/CMakeFiles/edit_cache.dir
+/home/leandro-felix/Documentos/github/projeto-LP1-IMD/build/CMakeFiles/rebuild_cache.dir

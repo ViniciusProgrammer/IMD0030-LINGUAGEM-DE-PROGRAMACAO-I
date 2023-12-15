@@ -1,0 +1,3 @@
+/home/davi/Documentos/projeto-LP1-IMD/CMakeFiles/main.dir
+/home/davi/Documentos/projeto-LP1-IMD/CMakeFiles/edit_cache.dir
+/home/davi/Documentos/projeto-LP1-IMD/CMakeFiles/rebuild_cache.dir

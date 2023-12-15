@@ -31,3 +31,9 @@ Informações Adicionais
 5. Gestor de Tarefas;
 6. Sistema de Estoque;
 7. Jogo de Cartas;
+
+## Como compilar o código
+
+1 - cmake build .
+2 - make
+3 - ./main

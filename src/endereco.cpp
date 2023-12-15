@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "header/endereco.h"
+#include "endereco.hpp"
 
 using namespace std;
 
@@ -14,6 +14,10 @@ Endereco::Endereco(std::string rua, int numero, std::string bairro,
     this->cidade = cidade;
     this->cep = cep;
     this->estado = estado;
+}
+
+Endereco::~Endereco(){
+    
 }
 
 string Endereco::getRua(){

@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
-#include "caixaSupermercado.h"
+#include "caixaSupermercado.hpp"
 
 using namespace std;
 
@@ -11,15 +12,87 @@ void Caixa::menuCaixa(){
     cout << "3- Excluir Compra" << endl;
     cout << "4- Buscar Compra" << endl;
     cout << "5- Sair" << endl;
-    cout << "Opção: " << endl;
+    cout << "Opção: ";
 }
 
-//void Caixa::inicializarArquivo();
-//void Caixa::atualizarArquivo();
+void Caixa::inicializarArquivo()
+{
+    fstream arquivo;
+    vector<string> linhas;
+    string nome, cpf, dataNascimento, genero, rua, bairro,
+    cidade, cep, estado, nome_produto, id_produto, idCompra;
+
+    float preco;
+
+    int quantidade, numero;
+
+    arquivo.open("archives/carrinhos.txt", ios::in | ios::app);
+
+    if(arquivo.is_open()){
+        string linha;
+
+        while(getline(arquivo, linha)){
+            linhas.push_back(linha);
+        }
+
+        arquivo.close();
+    } else{
+        cout << "Erro ao abrir o arquivo!" << endl;
+    }
+
+    for(int i = 0; i < linhas.size(); i+= 16){
+        nome = linhas[i];
+        cpf = linhas[i+1];
+        dataNascimento = linhas[i+2];
+        genero = linhas[i+3];
+        rua = linhas[i+4];
+        numero = stoi(linhas[i+5]);
+        bairro = linhas[i+6];
+        cidade = linhas[i+7];
+        cep = linhas[i+8];
+        estado = linhas[i+9];
+        nome_produto = linhas[i+10];
+        id_produto = linhas[i+11];
+        preco = stof(linhas[i+12]);
+        quantidade = stoi(linhas[i+13]);
+        idCompra = linhas[i+14];
+
+        Carrinho novoCarrinho(nome, cpf, dataNascimento, genero, rua, numero, bairro, cidade, cep, estado, nome_produto, id_produto, preco, quantidade, idCompra);
+        carrinhos.push_back(novoCarrinho);
+    }
+}
+void Caixa::atualizarArquivo(){
+    fstream arquivo;
+    arquivo.open("archives/carrinhos.txt", ios::out);
+
+    if(arquivo.is_open()){
+        for(int i = 0; i < carrinhos.size(); i++){
+            arquivo << carrinhos[i].getNome() << endl;
+            arquivo << carrinhos[i].getCpf() << endl;
+            arquivo << carrinhos[i].getDataNascimento() << endl;
+            arquivo << carrinhos[i].getGenero() << endl;
+            arquivo << carrinhos[i].getEndereco()->getRua() << endl;
+            arquivo << carrinhos[i].getEndereco()->getNumero() << endl;
+            arquivo << carrinhos[i].getEndereco()->getBairro() << endl;
+            arquivo << carrinhos[i].getEndereco()->getCidade() << endl;
+            arquivo << carrinhos[i].getEndereco()->getCep() << endl;
+            arquivo << carrinhos[i].getEndereco()->getEstado() << endl;
+            arquivo << carrinhos[i].get_nomeproduto() << endl;
+            arquivo << carrinhos[i].get_idproduto() << endl;
+            arquivo << carrinhos[i].get_preco() << endl;
+            arquivo << carrinhos[i].get_quantidade() << endl;
+            arquivo << carrinhos[i].getIdCompra() << endl;
+            arquivo << endl;
+        }
+        arquivo.close();
+    } else{
+        cout << "Erro ao abrir o arquivo!" << endl;
+    }
+}
 
 void Caixa::registrarCompra(){
     string nome, cpf, dataNascimento, genero, rua, bairro,
-    cidade, cep, estado, nome_produto, id_produto;
+    cidade, cep, estado, nome_produto, id_produto, idCompra;
 
     float preco;
 
@@ -28,7 +101,7 @@ void Caixa::registrarCompra(){
     system("clear || cls");
 
     cout << "       ---Registrar Compra---" << endl;
-    
+
     cout << "---Dados do Cliente---" << endl;
     cout << "Nome: ";
     cin.ignore();
@@ -62,8 +135,10 @@ void Caixa::registrarCompra(){
     cin >> preco;
     cout << "Quantidade: ";
     cin >> quantidade;
+    cout << "ID da compra: ";
+    cin >> idCompra;
 
-    Carrinho novoCarrinho(nome, cpf, dataNascimento, genero, rua, numero, bairro, cidade, cep, estado, nome_produto, id_produto, preco, quantidade);
+    Carrinho novoCarrinho(nome, cpf, dataNascimento, genero, rua, numero, bairro, cidade, cep, estado, nome_produto, id_produto, preco, quantidade, idCompra);
     carrinhos.push_back(novoCarrinho);
 
     system("clear || cls");
@@ -78,8 +153,8 @@ void Caixa::listarCompras(){
         system("clear || cls");
         cout << "\n---Não há compras registradas---\n" << endl;
     } else{
-        cout << "---Dados do Cliente---" << endl;
         for(int i = 0; i < carrinhos.size(); i++){
+            cout << "---Dados do Cliente---" << endl;
             cout << "Nome: " << carrinhos[i].getNome() << endl;
             cout << "CPF: " << carrinhos[i].getCpf() << endl;
             cout << "Data de Nascimento: " << carrinhos[i].getDataNascimento() << endl;
@@ -89,19 +164,14 @@ void Caixa::listarCompras(){
             cout << "Bairro: " << carrinhos[i].getEndereco()->getBairro() << endl;
             cout << "Cidade: " << carrinhos[i].getEndereco()->getCidade() << endl;
             cout << "CEP: " << carrinhos[i].getEndereco()->getCep() << endl;
-        }
-    }
 
-    if(carrinhos.size() == 0){
-        cout << "Não há compras registradas." << endl;
-    } else{
-        for(int i = 0; i < carrinhos.size(); i++){
             cout << "---Dados do Produto---" << endl;
             cout << "Nome do item: " << carrinhos[i].get_nomeproduto() << endl;
             cout << "ID do item: " << carrinhos[i].get_idproduto() << endl;
             cout << "Preço: " << carrinhos[i].get_preco() << endl;
             cout << "Quantidade: " << carrinhos[i].get_quantidade() << endl;
             cout << "Valor total: " << carrinhos[i].get_valortotal() << endl;
+            cout<< "ID da compra: " << carrinhos[i].getIdCompra() << endl;
             cout << endl;
         }
     }
@@ -109,14 +179,24 @@ void Caixa::listarCompras(){
 
 void Caixa :: buscarCompras() {
     bool encontrado = false;
-    
-    string produtoProcurado;
-    cin.ignore();
+    string idCompra;
 
-    getline(cin, produtoProcurado);
+    cout << "ID da compra: ";
+    cin.ignore();
+    cin >> idCompra;
 
     for(int i = 0; i < carrinhos.size(); i++){
-        if(carrinhos[i].get_nomeproduto() == produtoProcurado){
+        if(carrinhos[i].getIdCompra() == idCompra){
+            cout << "---Dados do Cliente---" << endl;
+            cout << "Nome: " << carrinhos[i].getNome() << endl;
+            cout << "CPF: " << carrinhos[i].getCpf() << endl;
+            cout << "Data de Nascimento: " << carrinhos[i].getDataNascimento() << endl;
+            cout << "Gênero: " << carrinhos[i].getGenero() << endl;
+            cout << "Rua: " << carrinhos[i].getEndereco()->getRua() << endl;
+            cout << "Número: " << carrinhos[i].getEndereco()->getNumero() << endl;
+            cout << "Bairro: " << carrinhos[i].getEndereco()->getBairro() << endl;
+            cout << "Cidade: " << carrinhos[i].getEndereco()->getCidade() << endl;
+            cout << "CEP: " << carrinhos[i].getEndereco()->getCep() << endl;
 
             cout << "---Dados do Produto---" << endl;
             cout << "Nome do item: " << carrinhos[i].get_nomeproduto() << endl;
@@ -124,12 +204,36 @@ void Caixa :: buscarCompras() {
             cout << "Preço: " << carrinhos[i].get_preco() << endl;
             cout << "Quantidade: " << carrinhos[i].get_quantidade() << endl;
             cout << "Valor total: " << carrinhos[i].get_valortotal() << endl;
+            cout<< "ID da compra: " << carrinhos[i].getIdCompra() << endl;
             cout << endl;
             encontrado = true;
         }
     }
     if(!encontrado){
-        cout << "Produto não encontrado." << endl;
+        system("clear || cls");
+        cout << "\n---Compra não encontrada!---\n" << endl;
     }
+
 }
 
+void Caixa::excluirCompra(){
+    string idCompra;
+    bool encontrado = false;
+
+    cout << "ID da compra: ";
+    cin >> idCompra;
+
+    for(int i = 0; i < carrinhos.size(); i++){
+        if(carrinhos[i].getIdCompra() == idCompra){
+            carrinhos.erase(carrinhos.begin() + i);
+            encontrado = true;
+        }
+    }
+    if(encontrado){
+        system("clear || cls");
+        cout << "\n---Compra excluída com sucesso!---\n" << endl;
+    } else{
+        system("clear || cls");
+        cout << "\n---Compra não encontrada!---\n" << endl;
+    }
+}
