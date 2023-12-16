@@ -32,8 +32,9 @@ Informações Adicionais
 6. Sistema de Estoque;
 7. Jogo de Cartas;
 
-## Como compilar o código
+## Instrucões de como compilar o código
 
-1 - cmake build .
-2 - make
-3 - ./main
+- cmake build .
+- make
+- ./main
+
