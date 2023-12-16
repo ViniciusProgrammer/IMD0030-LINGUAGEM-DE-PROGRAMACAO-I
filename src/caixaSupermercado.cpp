@@ -6,7 +6,8 @@
 
 using namespace std;
 
-void Caixa::menuCaixa(){
+void Caixa::menuCaixa()
+{
     cout << "1- Registrar Compra" << endl;
     cout << "2- Listar Compras" << endl;
     cout << "3- Excluir Compra" << endl;
@@ -28,19 +29,24 @@ void Caixa::inicializarArquivo()
 
     arquivo.open("archives/carrinhos.txt", ios::in | ios::app);
 
-    if(arquivo.is_open()){
+    if(arquivo.is_open())
+    {
         string linha;
 
-        while(getline(arquivo, linha)){
+        while(getline(arquivo, linha))
+        {
             linhas.push_back(linha);
         }
 
         arquivo.close();
-    } else{
+    } 
+    else
+    {
         cout << "Erro ao abrir o arquivo!" << endl;
     }
 
-    for(int i = 0; i < linhas.size(); i+= 16){
+    for(int i = 0; i < linhas.size(); i+= 16)
+    {
         nome = linhas[i];
         cpf = linhas[i+1];
         dataNascimento = linhas[i+2];
@@ -61,12 +67,16 @@ void Caixa::inicializarArquivo()
         carrinhos.push_back(novoCarrinho);
     }
 }
-void Caixa::atualizarArquivo(){
+
+void Caixa::atualizarArquivo()
+{
     fstream arquivo;
     arquivo.open("archives/carrinhos.txt", ios::out);
 
-    if(arquivo.is_open()){
-        for(int i = 0; i < carrinhos.size(); i++){
+    if(arquivo.is_open())
+    {
+        for(int i = 0; i < carrinhos.size(); i++)
+        {
             arquivo << carrinhos[i].getNome() << endl;
             arquivo << carrinhos[i].getCpf() << endl;
             arquivo << carrinhos[i].getDataNascimento() << endl;
@@ -85,12 +95,15 @@ void Caixa::atualizarArquivo(){
             arquivo << endl;
         }
         arquivo.close();
-    } else{
+    } 
+    else
+    {
         cout << "Erro ao abrir o arquivo!" << endl;
     }
 }
 
-void Caixa::registrarCompra(){
+void Caixa::registrarCompra()
+{
     string nome, cpf, dataNascimento, genero, rua, bairro,
     cidade, cep, estado, nome_produto, id_produto, idCompra;
 
@@ -145,15 +158,21 @@ void Caixa::registrarCompra(){
     cout << "\n---Compra registrada com sucesso!\n" << endl;
 }
 
-void Caixa::listarCompras(){
+void Caixa::listarCompras()
+{
     system("clear || cls");
     cout << "       --- Listar Compras ---" << endl;
 
-    if(carrinhos.size() == 0){
+    if(carrinhos.size() == 0)
+    {
         system("clear || cls");
         cout << "\n---Não há compras registradas---\n" << endl;
-    } else{
-        for(int i = 0; i < carrinhos.size(); i++){
+    } 
+
+    else
+    {
+        for(int i = 0; i < carrinhos.size(); i++)
+        {
             cout << "---Dados do Cliente---" << endl;
             cout << "Nome: " << carrinhos[i].getNome() << endl;
             cout << "CPF: " << carrinhos[i].getCpf() << endl;
@@ -177,7 +196,8 @@ void Caixa::listarCompras(){
     }
 }
 
-void Caixa :: buscarCompras() {
+void Caixa :: buscarCompras() 
+{
     bool encontrado = false;
     string idCompra;
 
@@ -185,8 +205,10 @@ void Caixa :: buscarCompras() {
     cin.ignore();
     cin >> idCompra;
 
-    for(int i = 0; i < carrinhos.size(); i++){
-        if(carrinhos[i].getIdCompra() == idCompra){
+    for(int i = 0; i < carrinhos.size(); i++)
+    {
+        if(carrinhos[i].getIdCompra() == idCompra)
+        {
             cout << "---Dados do Cliente---" << endl;
             cout << "Nome: " << carrinhos[i].getNome() << endl;
             cout << "CPF: " << carrinhos[i].getCpf() << endl;
@@ -209,27 +231,32 @@ void Caixa :: buscarCompras() {
             encontrado = true;
         }
     }
-    if(!encontrado){
+    if(!encontrado)
+    {
         system("clear || cls");
         cout << "\n---Compra não encontrada!---\n" << endl;
     }
 
 }
 
-void Caixa::excluirCompra(){
+void Caixa::excluirCompra()
+{
     string idCompra;
     bool encontrado = false;
 
     cout << "ID da compra: ";
     cin >> idCompra;
 
-    for(int i = 0; i < carrinhos.size(); i++){
-        if(carrinhos[i].getIdCompra() == idCompra){
+    for(int i = 0; i < carrinhos.size(); i++)
+    {
+        if(carrinhos[i].getIdCompra() == idCompra)
+        {
             carrinhos.erase(carrinhos.begin() + i);
             encontrado = true;
         }
     }
-    if(encontrado){
+    if(encontrado)
+    {
         system("clear || cls");
         cout << "\n---Compra excluída com sucesso!---\n" << endl;
     } else{
