@@ -1,10 +1,11 @@
 ## PROJETO FINAL
 
-Considerando os conhecimentos adquiridos na disciplina Linguagem de Programação I (IMD0030)
-principalmente nas unidade II e III, construa uma aplicação usando a linguagem de programação
-C++ com os seguintes itens:
+Apresento esse projeto com a seguinte perspectiva, na qual foi elaborado um sistema de caixa de supermercado
+que visa o seguinte comportamento, em que o usuário recebe um menu com as opções para prosseguir durante a execução no sistema.
 
 ## Obrigatoriamente:
+
+Considerando os conhecimentos adquiridos na disciplina Linguagem de Programação I (IMD0030) principalmente nas unidade II e III, construa uma aplicação usando a linguagem de programação C++ com os seguintes itens:
 
 1. Alocação de Memória dinâmica
 1. O uso da biblioteca Vector é permitido desde que a alocação dinâmica seja feita
@@ -24,6 +25,8 @@ Informações Adicionais
 
 ## Opções de Projetos
 
+Essas foram algumas opções feitas pelo professor Francimar, porém ele deixou em aberto para a escolha do aluno(a)
+
 1. Sistema de Gerenciamento de Alunos (IMD);
 2. Banco de Dados Simples;
 3. Jogo da Forca;
@@ -37,4 +40,3 @@ Informações Adicionais
 - cmake build .
 - make
 - ./main
-
